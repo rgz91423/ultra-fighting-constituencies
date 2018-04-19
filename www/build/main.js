@@ -26,23 +26,23 @@ var map = {
 		9
 	],
 	"../pages/checkout/checkout.module": [
-		300,
+		301,
 		8
 	],
 	"../pages/contact/contact.module": [
-		301,
+		300,
 		7
 	],
 	"../pages/home/home.module": [
-		302,
+		308,
 		6
 	],
 	"../pages/login-modal/login-modal.module": [
-		303,
+		302,
 		5
 	],
 	"../pages/post-detail/post-detail.module": [
-		305,
+		303,
 		4
 	],
 	"../pages/post-list/post-list.module": [
@@ -50,15 +50,15 @@ var map = {
 		3
 	],
 	"../pages/thank-you/thank-you.module": [
-		306,
+		305,
 		2
 	],
 	"../pages/woo-detail/woo-detail.module": [
-		307,
+		306,
 		1
 	],
 	"../pages/woo-list/woo-list.module": [
-		308,
+		307,
 		0
 	]
 };
@@ -454,15 +454,15 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/cart/cart.module#CartPageModule', name: 'CartPage', segment: 'cart', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/checkout/checkout.module#CheckoutPageModule', name: 'CheckoutPage', segment: 'checkout', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/contact/contact.module#ContactPageModule', name: 'ContactPage', segment: 'contact', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/checkout/checkout.module#CheckoutPageModule', name: 'CheckoutPage', segment: 'checkout', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login-modal/login-modal.module#LoginModalPageModule', name: 'LoginModalPage', segment: 'login-modal', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/post-list/post-list.module#PostListPageModule', name: 'PostListPage', segment: 'post-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/post-detail/post-detail.module#PostDetailPageModule', name: 'PostDetailPage', segment: 'post-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/post-list/post-list.module#PostListPageModule', name: 'PostListPage', segment: 'post-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/thank-you/thank-you.module#ThanksPageModule', name: 'ThanksPage', segment: 'thank-you', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/woo-detail/woo-detail.module#WooDetailPageModule', name: 'WooDetailPage', segment: 'woo-detail', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/woo-list/woo-list.module#WooListPageModule', name: 'WooListPage', segment: 'woo-list', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/woo-list/woo-list.module#WooListPageModule', name: 'WooListPage', segment: 'woo-list', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
@@ -548,7 +548,7 @@ var MyApp = (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/frankchau/ultra-fighting-constituencies/src/app/app.html"*/'<ion-menu *ngIf="menus" [content]="content">\n\n  <ion-header>\n    <ion-toolbar>\n      <ion-title></ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n		<ion-list-header text-wrap *ngIf="login_data">\n		<ion-avatar *ngIf="login_data.avatar">\n		  <img [src]="login_data.avatar" />\n		</ion-avatar>\n		<p class="loggedin-msg"><b>login_data.message</b></p>\n\n		</ion-list-header>\n\n		<button ion-item icon-left *ngFor="let item of menus" (click)="menuLink(item)">\n			<ion-icon name="{{item.icon}}"></ion-icon>\n		{{item.title}}\n		</button>\n		\n		<div padding>\n			<button ion-button block icon-left class="menu-login-button" (click)="openLoginModal()">\n			<ion-icon name="log-in"></ion-icon>\n			<span *ngIf="login_data">Logout</span><span *ngIf="!login_data">Login</span></button>\n		</div>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav id="nav" #content></ion-nav>'/*ion-inline-end:"/Users/frankchau/ultra-fighting-constituencies/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/frankchau/ultra-fighting-constituencies/src/app/app.html"*/'<ion-menu *ngIf="menus" [content]="content" persistent="true" >\n\n  <ion-header>\n    <ion-toolbar>\n      <ion-title></ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n		<ion-list-header text-wrap *ngIf="login_data">\n		<ion-avatar *ngIf="login_data.avatar">\n		  <img [src]="login_data.avatar" />\n		</ion-avatar>\n		<p class="loggedin-msg"><b>login_data.message</b></p>\n\n		</ion-list-header>\n\n		<button ion-item icon-left *ngFor="let item of menus" (click)="menuLink(item)">\n			<ion-icon name="{{item.icon}}"></ion-icon>\n		{{item.title}}\n		</button>\n		\n		<div padding>\n			<button ion-button block icon-left class="menu-login-button" (click)="openLoginModal()">\n			<ion-icon name="log-in"></ion-icon>\n			<span *ngIf="login_data">Logout</span><span *ngIf="!login_data">Login</span></button>\n		</div>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav id="nav" #content></ion-nav>'/*ion-inline-end:"/Users/frankchau/ultra-fighting-constituencies/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
