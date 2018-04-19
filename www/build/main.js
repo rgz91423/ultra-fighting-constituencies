@@ -42,11 +42,11 @@ var map = {
 		5
 	],
 	"../pages/post-detail/post-detail.module": [
-		304,
+		305,
 		4
 	],
 	"../pages/post-list/post-list.module": [
-		305,
+		304,
 		3
 	],
 	"../pages/thank-you/thank-you.module": [
@@ -102,7 +102,7 @@ var TabsPage = (function () {
         this.tab4Root = 'ContactPage';
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/chauchifai/ultra-fighting-constituencies/src/pages/tabs/tabs.html"*/'<ion-tabs color="dark">\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Posts" tabIcon="list"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="WooCommerce" tabIcon="basket"></ion-tab>\n  <ion-tab [root]="tab4Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/chauchifai/ultra-fighting-constituencies/src/pages/tabs/tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/frankchau/ultra-fighting-constituencies/src/pages/tabs/tabs.html"*/'<ion-tabs color="dark">\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Posts" tabIcon="list"></ion-tab>\n  <ion-tab [root]="tab4Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/frankchau/ultra-fighting-constituencies/src/pages/tabs/tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);
@@ -458,8 +458,8 @@ var AppModule = (function () {
                         { loadChildren: '../pages/contact/contact.module#ContactPageModule', name: 'ContactPage', segment: 'contact', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login-modal/login-modal.module#LoginModalPageModule', name: 'LoginModalPage', segment: 'login-modal', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/post-detail/post-detail.module#PostDetailPageModule', name: 'PostDetailPage', segment: 'post-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/post-list/post-list.module#PostListPageModule', name: 'PostListPage', segment: 'post-list', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/post-detail/post-detail.module#PostDetailPageModule', name: 'PostDetailPage', segment: 'post-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/thank-you/thank-you.module#ThanksPageModule', name: 'ThanksPage', segment: 'thank-you', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/woo-detail/woo-detail.module#WooDetailPageModule', name: 'WooDetailPage', segment: 'woo-detail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/woo-list/woo-list.module#WooListPageModule', name: 'WooListPage', segment: 'woo-list', priority: 'low', defaultHistory: [] }
@@ -548,7 +548,7 @@ var MyApp = (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/chauchifai/ultra-fighting-constituencies/src/app/app.html"*/'<ion-menu *ngIf="menus" [content]="content">\n\n  <ion-header>\n    <ion-toolbar>\n      <ion-title></ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n		<ion-list-header text-wrap *ngIf="login_data">\n		<ion-avatar *ngIf="login_data.avatar">\n		  <img [src]="login_data.avatar" />\n		</ion-avatar>\n		<p class="loggedin-msg"><b>login_data.message</b></p>\n\n		</ion-list-header>\n\n		<button ion-item icon-left *ngFor="let item of menus" (click)="menuLink(item)">\n			<ion-icon name="{{item.icon}}"></ion-icon>\n		{{item.title}}\n		</button>\n		\n		<div padding>\n			<button ion-button block icon-left class="menu-login-button" (click)="openLoginModal()">\n			<ion-icon name="log-in"></ion-icon>\n			<span *ngIf="login_data">Logout</span><span *ngIf="!login_data">Login</span></button>\n		</div>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav id="nav" #content></ion-nav>'/*ion-inline-end:"/Users/chauchifai/ultra-fighting-constituencies/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/frankchau/ultra-fighting-constituencies/src/app/app.html"*/'<ion-menu *ngIf="menus" [content]="content">\n\n  <ion-header>\n    <ion-toolbar>\n      <ion-title></ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n		<ion-list-header text-wrap *ngIf="login_data">\n		<ion-avatar *ngIf="login_data.avatar">\n		  <img [src]="login_data.avatar" />\n		</ion-avatar>\n		<p class="loggedin-msg"><b>login_data.message</b></p>\n\n		</ion-list-header>\n\n		<button ion-item icon-left *ngFor="let item of menus" (click)="menuLink(item)">\n			<ion-icon name="{{item.icon}}"></ion-icon>\n		{{item.title}}\n		</button>\n		\n		<div padding>\n			<button ion-button block icon-left class="menu-login-button" (click)="openLoginModal()">\n			<ion-icon name="log-in"></ion-icon>\n			<span *ngIf="login_data">Logout</span><span *ngIf="!login_data">Login</span></button>\n		</div>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav id="nav" #content></ion-nav>'/*ion-inline-end:"/Users/frankchau/ultra-fighting-constituencies/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
@@ -684,10 +684,9 @@ var Configure = (function () {
     };
     Configure = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
     ], Configure);
     return Configure;
-    var _a;
 }());
 
 //# sourceMappingURL=configure.js.map
