@@ -6,11 +6,18 @@ import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
 
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  /*
+  tab1Root = PostPage;
+  tab2Root = PostPage;
+  tab3Root = PostPage;
+  */
 
 	posts: Array<any> = new Array<any>();
   morePagesAvailable: boolean = true;

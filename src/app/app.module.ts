@@ -16,6 +16,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NativeStorage } from '@ionic-native/native-storage';
 
+import { NavController } from 'ionic-angular';
+
 @NgModule({
   declarations: [
     MyApp,

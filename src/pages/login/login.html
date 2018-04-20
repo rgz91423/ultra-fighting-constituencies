@@ -1,7 +1,8 @@
 <ion-content padding class="form-content">
   <form class="form" [formGroup]="login_form" (ngSubmit)="login(login_form.value)">
-    <ion-label class="title">Welcome back</ion-label>
-    <p class="skip-login"><a (click)="skipLogin()">Click here to skip login!</a></p>
+    <ion-label class="title">超武鬥組</ion-label>
+    <ion-label class="title">Ultra Fighting Constituencies</ion-label>
+    <!--<p class="skip-login"><a (click)="skipLogin()">Click here to skip login!</a></p>
     <p class="skip-login"><a (click)="goToRegister()">Click here to Register!</a></p>
     <ion-item>
       <ion-label color="primary">Username</ion-label>
@@ -13,6 +14,7 @@
       <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
     </ion-item>
     <p class="error-message" *ngIf="error_message">{{error_message}}</p>
-    <button ion-button full class="login-button" [disabled]="!login_form.valid" type="submit">Login</button>
+    <button ion-button full class="login-button" [disabled]="!login_form.valid" type="submit">Login</button>-->
+    <button ion-button full class="skip-login" (click)="skipLogin()">Fight!</button>
   </form>
 </ion-content>

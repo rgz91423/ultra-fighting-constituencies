@@ -1,1 +1,32 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-nav #content [root]="rootPage"></ion-nav>
+
+<ion-menu persistent="true" [content]="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <button ion-item menuClose>
+          Home
+        </button>
+        <button ion-item menuClose (click)="goToCategoryPosts(4,'小說')">
+            小說
+        </button>
+        <button ion-item menuClose (click)="goToCategoryPosts(11,'第一章')">
+            第一章
+        </button>
+        <button ion-item menuClose (click)="goToCategoryPosts(7,'第二章')">
+            第二章
+        </button>
+        <button ion-item menuClose (click)="goToCategoryPosts(3,'第三章')">
+            第三章
+        </button>
+       
+        <button ion-item menuClose (click)="goToCategoryPosts(2,'插圖')">
+            插圖
+        </button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
