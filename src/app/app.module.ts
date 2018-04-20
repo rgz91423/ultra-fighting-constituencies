@@ -8,6 +8,8 @@ import { PostPage } from '../pages/post/post';
 import { HomePage } from '../pages/home/home';
 import { RegisterPage } from '../pages/register/register';
 import { LoginPage } from '../pages/login/login';
+import { TabsPage } from '../pages/tabs/tabs';
+
 
 import { WordpressService } from '../services/wordpress.service';
 import { AuthenticationService } from '../services/authentication.service';
@@ -24,7 +26,8 @@ import { NavController } from 'ionic-angular';
     PostPage,
     HomePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
