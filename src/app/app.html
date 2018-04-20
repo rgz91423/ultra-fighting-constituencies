@@ -3,28 +3,28 @@
 <ion-menu persistent="true" [content]="content">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Menu</ion-title>
+        <ion-title>選單</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-list>
-        <button ion-item menuClose>
-          Home
+        <button ion-item menuToggle>
+            主頁
         </button>
-        <button ion-item menuClose (click)="goToCategoryPosts(4,'小說')">
+        <button ion-item menuToggle (click)="goToCategoryPosts(4,'小說')">
             小說
         </button>
-        <button ion-item menuClose (click)="goToCategoryPosts(11,'第一章')">
+        <button ion-item menuToggle (click)="goToCategoryPosts(11,'第一章')">
             第一章
         </button>
-        <button ion-item menuClose (click)="goToCategoryPosts(7,'第二章')">
+        <button ion-item menuToggle (click)="goToCategoryPosts(7,'第二章')">
             第二章
         </button>
-        <button ion-item menuClose (click)="goToCategoryPosts(3,'第三章')">
+        <button ion-item menuToggle (click)="goToCategoryPosts(3,'第三章')">
             第三章
         </button>
        
-        <button ion-item menuClose (click)="goToCategoryPosts(2,'插圖')">
+        <button ion-item menuToggle (click)="goToCategoryPosts(2,'插圖')">
             插圖
         </button>
       </ion-list>
