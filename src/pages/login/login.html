@@ -1,7 +1,6 @@
 <ion-content padding class="form-content">
   <form class="form" [formGroup]="login_form" (ngSubmit)="login(login_form.value)">
-    <ion-label class="title">超武鬥組</ion-label>
-    <ion-label class="title">Ultra Fighting Constituencies</ion-label>
+    
     <!--<p class="skip-login"><a (click)="skipLogin()">Click here to skip login!</a></p>
     <p class="skip-login"><a (click)="goToRegister()">Click here to Register!</a></p>
     <ion-item>
@@ -15,6 +14,18 @@
     </ion-item>
     <p class="error-message" *ngIf="error_message">{{error_message}}</p>
     <button ion-button full class="login-button" [disabled]="!login_form.valid" type="submit">Login</button>-->
+   
+    <ion-slides pager>
+      <ion-slide>
+        
+        <img src="assets/image/cover1_notext.jpg" class="slide-image"/>
+      </ion-slide>
+      <ion-slide>
+        <img src="assets/image/cover2_notext.jpg" class="slide-image"/>
+      </ion-slide>
+    </ion-slides>
+    <ion-label class="title">超武鬥組</ion-label>
+    <ion-label class="title">Ultra Fighting Constituencies</ion-label>
     <button ion-button full class="skip-login" (click)="skipLogin()">Fight!</button>
   </form>
 </ion-content>
