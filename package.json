@@ -1,8 +1,8 @@
 {
-  "name": "ionic-wordpress-example",
+  "name": "ultra-fighting-constituencies",
   "version": "0.0.1",
-  "author": "IonicThemes",
-  "homepage": "https://ionicthemes.com/",
+  "author": "Mobilecomic",
+  "homepage": "http://mobilecomic.com/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",

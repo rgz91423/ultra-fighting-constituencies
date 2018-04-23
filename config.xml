@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="ionic-wordpress-example" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Ionic Wordpress Integration Example</name>
-    <description>An app to show how to integrate a wordpress blog into an Ionic 3 App</description>
+    <name>Ultra Fighting Constituencies</name>
+    <description>現代群雄割據正式開幕，一場又一場亂鬥在香港展開！</description>
     <author email="contact@ionicthemes.com" href="https://ionicthemes.com/">IonicThemes</author>
     <content src="index.html" />
     <access origin="*" />
