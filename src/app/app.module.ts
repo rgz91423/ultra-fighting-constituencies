@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { RegisterPage } from '../pages/register/register';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
+import { GalleryPage } from '../pages/gallery/gallery';
 
 
 import { WordpressService } from '../services/wordpress.service';
@@ -25,6 +26,7 @@ import { NavController } from 'ionic-angular';
     MyApp,
     PostPage,
     HomePage,
+    GalleryPage,
     LoginPage,
     RegisterPage,
     TabsPage
@@ -40,7 +42,8 @@ import { NavController } from 'ionic-angular';
     PostPage,
     HomePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    GalleryPage
   ],
   providers: [
     StatusBar,

@@ -48,6 +48,12 @@ export class WordpressService {
     .map(res => res.json());
   }
 
+
+  getPost(postId){
+    return this.http.get(Config.WORDPRESS_REST_API_URL + "posts/" + postId)
+    .map(res => res.json());
+  }
+
   createComment(postId, user, comment){
     let header: Headers = new Headers();
     header.append('Authorization', 'Bearer ' + user.token);

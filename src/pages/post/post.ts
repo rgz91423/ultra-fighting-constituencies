@@ -35,10 +35,11 @@ export class PostPage {
     this.morePagesAvailable = true;
     let loading = this.loadingCtrl.create();
 
-    loading.present();
+    //loading.present();
 
     this.post = this.navParams.get('item');
 
+    /*
     Observable.forkJoin(
       this.getAuthorData(),
       this.getCategories(),
@@ -49,6 +50,7 @@ export class PostPage {
         this.comments = data[2];
         loading.dismiss();
       });
+      */
   }
 
   getAuthorData(){

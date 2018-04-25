@@ -11,6 +11,9 @@
         <button ion-item menuToggle>
             主頁
         </button>
+        <button ion-item menuToggle (click)="goToCategoryPosts(14,'簡介')">
+            簡介
+        </button>
         <button ion-item menuToggle (click)="goToCategoryPosts(4,'小說')">
             小說
         </button>
@@ -23,9 +26,11 @@
         <button ion-item menuToggle (click)="goToCategoryPosts(3,'第三章')">
             第三章
         </button>
-       
         <button ion-item menuToggle (click)="goToCategoryPosts(2,'插圖')">
             插圖
+        </button>
+        <button ion-item menuToggle (click)="goToCategoryPosts(9,'武功')">
+            武功
         </button>
       </ion-list>
     </ion-content>
