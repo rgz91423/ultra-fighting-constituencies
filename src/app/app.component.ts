@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
+import { GalleryPage } from '../pages/gallery/gallery';
 import { LoginPage } from '../pages/login/login';
 import { AuthenticationService } from '../services/authentication.service';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -54,6 +55,19 @@ export class MyApp {
       title: categoryTitle
     })*/
     this.nav.setRoot(HomePage,{
+      id: categoryId,
+      title: categoryTitle
+    });
+
+  }
+
+
+  goToGallery(categoryId, categoryTitle){
+    /*this.navCtrl.push(HomePage, {
+      id: categoryId,
+      title: categoryTitle
+    })*/
+    this.nav.setRoot(GalleryPage,{
       id: categoryId,
       title: categoryTitle
     });
