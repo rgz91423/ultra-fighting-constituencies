@@ -1,6 +1,8 @@
 //config constants
 export const WORDPRESS_URL = 'http://mobilecomic.com/';
 export const WORDPRESS_REST_API_URL = WORDPRESS_URL + 'wp-json/wp/v2/';
+export const GALLERY_CATEGORY_ID=2;
+export const NOVEL_CATEGORY_ID=4;
 
 /*
 import {AppConfig} from "safaassafsaf";

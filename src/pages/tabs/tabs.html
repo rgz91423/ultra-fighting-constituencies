@@ -1,5 +1,16 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title >超武鬥組</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
 <ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>
+    <ion-tab tabIcon="ios-home-outline" [root]="homePage"></ion-tab>
+    <ion-tab tabIcon="ios-book-outline" [root]="categoriesPage"></ion-tab>
+    <ion-tab tabIcon="ios-images-outline" [root]="galleryPage"></ion-tab>
 </ion-tabs>

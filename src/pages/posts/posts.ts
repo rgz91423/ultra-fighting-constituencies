@@ -4,15 +4,14 @@ import { LoginPage } from '../login/login';
 import { NavController, LoadingController, NavParams } from 'ionic-angular';
 import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import { GALLERY_CATEGORY_ID } from '../../config';
 
 
 
 @Component({
-  selector: 'page-gallery',
-  templateUrl: 'gallery.html'
+  selector: 'page-posts',
+  templateUrl: 'posts.html'
 })
-export class GalleryPage {
+export class PostsPage {
 
   /*
   tab1Root = PostPage;
@@ -20,7 +19,7 @@ export class GalleryPage {
   tab3Root = PostPage;
   */
 
-    posts: Array<any> = new Array<any>();
+	posts: Array<any> = new Array<any>();
   morePagesAvailable: boolean = true;
   loggedUser: boolean = false;
 
@@ -44,7 +43,7 @@ export class GalleryPage {
     this.morePagesAvailable = true;
 
     //if we are browsing a category
-    this.categoryId = this.navParams.get('id') || GALLERY_CATEGORY_ID;
+    this.categoryId = this.navParams.get('id');
     this.categoryTitle = this.navParams.get('title');
 
     if(!(this.posts.length > 0)){

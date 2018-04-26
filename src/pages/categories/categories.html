@@ -1,0 +1,50 @@
+<!--<ion-header>
+  <ion-navbar color="primary">
+    <ion-title *ngIf="!categoryTitle">小說連載</ion-title>
+    <ion-title *ngIf="categoryTitle">{{categoryTitle}} posts</ion-title>
+    <ion-buttons *ngIf="loggedUser" end>
+      <button ion-button icon-only (click)="logOut()">
+        <ion-icon class="toolbar-icon" name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons *ngIf="!loggedUser" end>
+      <button ion-button icon-only (click)="goToLogin()">
+        <ion-icon class="toolbar-icon" name="log-in"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>-->
+
+<ion-content class="content">
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 *ngFor="let category of categories">
+                    <ion-card (click)="goToCategoryPosts(category.id, category.name)" >
+                        <img *ngIf="category.description" [src]="category.description"/>
+                        <ion-card-content >
+                            <ion-card-title [innerHTML]="category.name"></ion-card-title>
+                        </ion-card-content>
+                    </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+
+   
+    <ion-infinite-scroll [enabled]="morePagesAvailable" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more posts ...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>
+  
+  
+  

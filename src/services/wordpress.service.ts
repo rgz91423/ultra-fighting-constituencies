@@ -43,8 +43,13 @@ export class WordpressService {
     return Observable.forkJoin(observableBatch);
   }
 
-  getCategory(category){
-    return this.http.get(Config.WORDPRESS_REST_API_URL + "categories/" + category)
+  getCategory(categoryId:number){
+    return this.http.get(Config.WORDPRESS_REST_API_URL + "categories/" + categoryId)
+    .map(res => res.json());
+  }
+
+  getCategories(categoryId:number, page:number = 1,order:string="desc", orderby:string = "slug") {
+    return this.http.get(Config.WORDPRESS_REST_API_URL + "categories?orderby=" + orderby + "&order=" + order + "&page=" + page + (categoryId ? "&parent=" + categoryId : ""))
     .map(res => res.json());
   }
 

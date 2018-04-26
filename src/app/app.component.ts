@@ -16,7 +16,7 @@ import { App, MenuController } from 'ionic-angular';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any;
+  rootPage:any = TabsPage;
 
   constructor(
    /* public navCtrl: NavController,
@@ -24,13 +24,16 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
+    
+
+
     authenticationService: AuthenticationService,
     menu: MenuController
   ) {
-    menu.enable(true);
+    //menu.enable(true);
 
     platform.ready().then(() => {
-      authenticationService.getUser()
+      /*authenticationService.getUser()
       .then(
         data => {
           authenticationService.validateAuthToken(data.token)
@@ -40,7 +43,7 @@ export class MyApp {
           )
         },
         err => this.rootPage = LoginPage
-      );
+      );*/
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();

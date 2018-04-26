@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { PostPage } from '../post/post';
 import { LoginPage } from '../login/login';
+import { PostsPage } from '../posts/posts';
 import { NavController, LoadingController, NavParams } from 'ionic-angular';
 import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import { GALLERY_CATEGORY_ID } from '../../config';
-
+import { NOVEL_CATEGORY_ID } from '../../config';
 
 
 @Component({
-  selector: 'page-gallery',
-  templateUrl: 'gallery.html'
+  selector: 'page-categories',
+  templateUrl: 'categories.html'
 })
-export class GalleryPage {
+export class CategoriesPage {
 
   /*
   tab1Root = PostPage;
@@ -20,7 +20,7 @@ export class GalleryPage {
   tab3Root = PostPage;
   */
 
-    posts: Array<any> = new Array<any>();
+	categories: Array<any> = new Array<any>();
   morePagesAvailable: boolean = true;
   loggedUser: boolean = false;
 
@@ -44,18 +44,18 @@ export class GalleryPage {
     this.morePagesAvailable = true;
 
     //if we are browsing a category
-    this.categoryId = this.navParams.get('id') || GALLERY_CATEGORY_ID;
+    this.categoryId = this.navParams.get('id')  || NOVEL_CATEGORY_ID;;
     this.categoryTitle = this.navParams.get('title');
 
-    if(!(this.posts.length > 0)){
+    if(!(this.categories.length > 0)){
       let loading = this.loadingCtrl.create();
       loading.present();
 
-      this.wordpressService.getRecentPosts(this.categoryId)
+      this.wordpressService.getCategories(this.categoryId, 1, "asc","slug")
       .subscribe(data => {
-        for(let post of data){
-          post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
-          this.posts.push(post);
+        for(let category of data){
+          //post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
+          this.categories.push(category);
         }
         loading.dismiss();
       });
@@ -69,22 +69,34 @@ export class GalleryPage {
   }
 
   doInfinite(infiniteScroll) {
-    let page = (Math.ceil(this.posts.length/10)) + 1;
+    let page = (Math.ceil(this.categories.length/10)) + 1;
     let loading = true;
 
-    this.wordpressService.getRecentPosts(this.categoryId, page)
+    this.wordpressService.getCategories(this.categoryId, page, "asc","slug")
     .subscribe(data => {
-      for(let post of data){
+      for(let category of data){
         if(!loading){
           infiniteScroll.complete();
         }
-        post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
-        this.posts.push(post);
+       // post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
+        this.categories.push(category);
         loading = false;
       }
     }, err => {
       this.morePagesAvailable = false;
     })
+  }
+
+  goToCategoryPosts(categoryId, categoryTitle){
+    /*this.navCtrl.push(HomePage, {
+      id: categoryId,
+      title: categoryTitle
+    })*/
+    this.navCtrl.push(PostsPage,{
+      id: categoryId,
+      title: categoryTitle
+    });
+
   }
 
   logOut(){
