@@ -1,6 +1,15 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title *ngIf="post" >{{post.title.rendered}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
 
-
-<ion-content padding>
+<ion-content class="content">
   <div *ngIf="post" class="post">
     <div class="post-title" [innerHTML]="post.title.rendered"></div>
     <p class="post-content" [innerHTML]="post.content.rendered"></p>

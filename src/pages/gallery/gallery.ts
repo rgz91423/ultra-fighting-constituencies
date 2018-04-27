@@ -4,7 +4,7 @@ import { LoginPage } from '../login/login';
 import { NavController, LoadingController, NavParams } from 'ionic-angular';
 import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import { GALLERY_CATEGORY_ID } from '../../config';
+
 
 
 
@@ -44,7 +44,7 @@ export class GalleryPage {
     this.morePagesAvailable = true;
 
     //if we are browsing a category
-    this.categoryId = this.navParams.get('id') || GALLERY_CATEGORY_ID;
+    this.categoryId = this.navParams.get('id');
     this.categoryTitle = this.navParams.get('title');
 
     if(!(this.posts.length > 0)){

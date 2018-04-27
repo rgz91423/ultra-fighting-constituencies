@@ -5,7 +5,7 @@ import { PostsPage } from '../posts/posts';
 import { NavController, LoadingController, NavParams } from 'ionic-angular';
 import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import { NOVEL_CATEGORY_ID } from '../../config';
+
 
 
 @Component({
@@ -44,7 +44,7 @@ export class CategoriesPage {
     this.morePagesAvailable = true;
 
     //if we are browsing a category
-    this.categoryId = this.navParams.get('id')  || NOVEL_CATEGORY_ID;;
+    this.categoryId = this.navParams.get('id');
     this.categoryTitle = this.navParams.get('title');
 
     if(!(this.categories.length > 0)){
