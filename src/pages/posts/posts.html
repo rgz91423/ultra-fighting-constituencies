@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title *ngIf="!categoryTitle">小說連載</ion-title>
+    <ion-title *ngIf="!categoryTitle">文章</ion-title>
     <ion-title *ngIf="categoryTitle">{{categoryTitle}}</ion-title>
     <!--<ion-buttons *ngIf="loggedUser" end>
       <button ion-button icon-only (click)="logOut()">
@@ -12,11 +12,7 @@
         <ion-icon class="toolbar-icon" name="log-in"></ion-icon>
       </button>
     </ion-buttons>-->
-    <ion-buttons end>
-      <button ion-button icon-only menuToggle>
-        <ion-icon name='menu'></ion-icon>
-      </button>
-    </ion-buttons>
+    
   </ion-navbar>
 </ion-header>
 

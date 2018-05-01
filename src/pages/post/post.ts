@@ -15,6 +15,8 @@ import 'rxjs/add/observable/forkJoin';
 export class PostPage {
 
   post: any;
+  postId: number;
+  categoryId: number;
   user: string;
   comments: Array<any> = new Array<any>();
   categories: Array<any> = new Array<any>();
@@ -38,6 +40,22 @@ export class PostPage {
     //loading.present();
 
     this.post = this.navParams.get('item');
+    this.postId = this.navParams.get('id');
+    this.categoryId = this.navParams.get('category');
+
+    if (!this.post) {
+
+      if(!(this.post)){
+        let loading = this.loadingCtrl.create();
+        loading.present();
+
+        this.wordpressService.getPost(this.postId)
+        .subscribe(data => {
+            this.post = data;
+          loading.dismiss();
+        });
+      }
+    }
 
     /*
     Observable.forkJoin(
