@@ -43,10 +43,8 @@ export class PostPage {
     this.postId = this.navParams.get('id');
     this.categoryId = this.navParams.get('category');
 
-    if (!this.post) {
-
+   
       if(!(this.post)){
-        let loading = this.loadingCtrl.create();
         loading.present();
 
         this.wordpressService.getPost(this.postId)
@@ -55,8 +53,7 @@ export class PostPage {
           loading.dismiss();
         });
       }
-    }
-
+   
     /*
     Observable.forkJoin(
       this.getAuthorData(),
