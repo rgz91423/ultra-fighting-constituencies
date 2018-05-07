@@ -21,6 +21,8 @@ export class PostPage {
   comments: Array<any> = new Array<any>();
   categories: Array<any> = new Array<any>();
   morePagesAvailable: boolean = true;
+  prev:any;
+  next:any;
 
   constructor(
     public navParams: NavParams,
@@ -43,6 +45,8 @@ export class PostPage {
     this.postId = this.navParams.get('id');
     this.categoryId = this.navParams.get('category');
 
+    this.prev = this.navParams.get('prev');
+    this.next = this.navParams.get('next');
    
       if(!(this.post)){
         loading.present();
@@ -54,6 +58,9 @@ export class PostPage {
         });
       }
    
+      console.log("prev ctrl:");
+      console.log(this.navCtrl.getPrevious().component.postList);
+      
     /*
     Observable.forkJoin(
       this.getAuthorData(),
@@ -79,6 +86,24 @@ export class PostPage {
   getComments(){
     return this.wordpressService.getComments(this.post.id);
   }
+
+  getPrev() {
+    this.navCtrl.push(PostPage,{
+      item: this.prev(this.post),
+      next:this.next.bind(this),
+      prev:this.prev.bind(this)
+    });
+  }
+
+
+  getNext() {
+    this.navCtrl.push(PostPage,{
+      item: this.next(this.post),
+      next:this.next.bind(this),
+      prev:this.prev.bind(this)
+    });
+  }
+
 
   loadMoreComments(infiniteScroll) {
     let page = (this.comments.length/10) + 1;

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PostPage } from '../post/post';
 import { LoginPage } from '../login/login';
-import { NavController, LoadingController, NavParams } from 'ionic-angular';
+import { NavController, LoadingController, NavParams, ModalController } from 'ionic-angular';
 import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
 
@@ -28,6 +28,7 @@ export class PostsPage {
 
   constructor(
     public navCtrl: NavController,
+    public modalCtrl: ModalController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public wordpressService: WordpressService,
@@ -63,9 +64,15 @@ export class PostsPage {
 
   postTapped(event, post) {
 		this.navCtrl.push(PostPage, {
-      id: post.id
-      //item: post
-		});
+      item: post,
+      next:this.getNext.bind(this),
+      prev:this.getPrev.bind(this)
+    });
+    
+   // let postModal = this.modalCtrl.create(PostPage, { id: post.id });
+    //postModal.present();
+
+
   }
 
   doInfinite(infiniteScroll) {
@@ -98,4 +105,41 @@ export class PostsPage {
   goToLogin(){
     this.navCtrl.push(LoginPage);
   }
+
+  public get postList() {
+    return this.postList;
+  }
+
+  getNext(post) {
+    let i = this.posts.findIndex(p=>p.id==post.id)+1;
+    if (i>this.posts.length-1) {
+      
+      let page = (Math.ceil(this.posts.length/10)) + 1;
+      let loading = true;
+
+      this.wordpressService.getRecentPosts(this.categoryId, page)
+      .subscribe(data => {
+        for(let post of data){
+          
+          post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
+          this.posts.push(post);
+          loading = false;
+
+        }
+
+        return this.posts[i];
+
+      }, err => {
+        this.morePagesAvailable = false;
+      })
+    }
+  }
+
+  getPrev(post) {
+    let i = this.posts.findIndex(p=>p.id==post.id)-1;
+    i = i<0 ? 0 : i;
+    return this.posts[i];
+  }
+
+
 }
