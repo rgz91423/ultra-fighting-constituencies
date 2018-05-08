@@ -6,6 +6,9 @@
 </ion-header>
 
 <ion-content class="content">
+    <button ion-button (click)="getPrev()">Prev</button>
+    <button ion-button (click)="getNext()">Next</button>
+   
   <div *ngIf="post" class="post">
     <div class="post-title" [innerHTML]="post.title.rendered"></div>
     <p class="post-content" [innerHTML]="post.content.rendered"></p>
@@ -43,8 +46,6 @@
     </ion-infinite-scroll>
  </div>
 
- <button ion-button (click)="getPrev()">Prev</button>
- <button ion-button (click)="getNext()">Next</button>
 
 </ion-content>
 <ion-footer>

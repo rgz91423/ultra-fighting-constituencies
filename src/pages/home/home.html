@@ -10,7 +10,7 @@
   <ion-card *ngFor="let post of posts" >
     <ion-card-content (click)="postTapped($event, post)">
       <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
-      <p [innerHTML]="post.excerpt.rendered"></p>
+      <!--<p [innerHTML]="post.excerpt.rendered"></p>--> 
     </ion-card-content>
     <!--<ion-row no-padding>
        <ion-col>
@@ -25,7 +25,7 @@
        </ion-col>
      </ion-row>-->
   </ion-card>
-  <ion-infinite-scroll [enabled]="morePagesAvailable" (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll threshold="50%" [enabled]="morePagesAvailable" (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content
     loadingSpinner="bubbles"
     loadingText="Loading more posts ...">

@@ -58,8 +58,8 @@ export class PostPage {
         });
       }
    
-      console.log("prev ctrl:");
-      console.log(this.navCtrl.getPrevious().component.postList);
+     // console.log("prev ctrl:");
+     // console.log(this.navCtrl.getPrevious().component.postList);
       
     /*
     Observable.forkJoin(
@@ -89,7 +89,7 @@ export class PostPage {
 
   getPrev() {
     this.navCtrl.push(PostPage,{
-      item: this.prev(this.post),
+      id: this.prev(this.post).id,
       next:this.next.bind(this),
       prev:this.prev.bind(this)
     });
@@ -97,11 +97,14 @@ export class PostPage {
 
 
   getNext() {
+    
     this.navCtrl.push(PostPage,{
-      item: this.next(this.post),
+      id: this.next(this.post).id,
       next:this.next.bind(this),
       prev:this.prev.bind(this)
     });
+      
+   
   }
 
 

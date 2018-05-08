@@ -16,6 +16,8 @@ export class WordpressService {
     return this.http.get(
       Config.WORDPRESS_REST_API_URL
       + 'posts?page=' + page
+      + '&per_page=' + Config.QUERY_SIZE
+      + '&fields=id,title.rendered'
       + category_url)
     .map(res => res.json());
   }

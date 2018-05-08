@@ -4,7 +4,7 @@ import { LoginPage } from '../login/login';
 import { NavController, LoadingController, NavParams } from 'ionic-angular';
 import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
-
+import * as Config from '../../config';
 
 
 @Component({
@@ -53,7 +53,7 @@ export class HomePage {
       this.wordpressService.getRecentPosts(this.categoryId)
       .subscribe(data => {
         for(let post of data){
-          post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
+          //post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
           this.posts.push(post);
         }
         loading.dismiss();
@@ -68,7 +68,7 @@ export class HomePage {
   }
 
   doInfinite(infiniteScroll) {
-    let page = (Math.ceil(this.posts.length/10)) + 1;
+    let page = (Math.ceil(this.posts.length/Config.QUERY_SIZE)) + 1;
     let loading = true;
 
     this.wordpressService.getRecentPosts(this.categoryId, page)
@@ -77,7 +77,7 @@ export class HomePage {
         if(!loading){
           infiniteScroll.complete();
         }
-        post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
+        //post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
         this.posts.push(post);
         loading = false;
       }

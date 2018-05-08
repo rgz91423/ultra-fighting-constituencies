@@ -4,7 +4,7 @@ import { LoginPage } from '../login/login';
 import { NavController, LoadingController, NavParams, ModalController } from 'ionic-angular';
 import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
-
+import * as Config from '../../config';
 
 
 @Component({
@@ -54,7 +54,7 @@ export class PostsPage {
       this.wordpressService.getRecentPosts(this.categoryId)
       .subscribe(data => {
         for(let post of data){
-          post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
+          //post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
           this.posts.push(post);
         }
         loading.dismiss();
@@ -64,19 +64,23 @@ export class PostsPage {
 
   postTapped(event, post) {
 		this.navCtrl.push(PostPage, {
+      id: post.id,
+      next:this.getNext.bind(this),
+      prev:this.getPrev.bind(this)
+    });
+    /*
+   let postModal = this.modalCtrl.create(PostPage,  {
       item: post,
       next:this.getNext.bind(this),
       prev:this.getPrev.bind(this)
     });
-    
-   // let postModal = this.modalCtrl.create(PostPage, { id: post.id });
-    //postModal.present();
-
+    postModal.present();
+*/
 
   }
 
   doInfinite(infiniteScroll) {
-    let page = (Math.ceil(this.posts.length/10)) + 1;
+    let page = (Math.ceil(this.posts.length/Config.QUERY_SIZE)) + 1;
     let loading = true;
 
     this.wordpressService.getRecentPosts(this.categoryId, page)
@@ -85,7 +89,7 @@ export class PostsPage {
         if(!loading){
           infiniteScroll.complete();
         }
-        post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
+       // post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
         this.posts.push(post);
         loading = false;
       }
@@ -112,27 +116,9 @@ export class PostsPage {
 
   getNext(post) {
     let i = this.posts.findIndex(p=>p.id==post.id)+1;
-    if (i>this.posts.length-1) {
-      
-      let page = (Math.ceil(this.posts.length/10)) + 1;
-      let loading = true;
-
-      this.wordpressService.getRecentPosts(this.categoryId, page)
-      .subscribe(data => {
-        for(let post of data){
-          
-          post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
-          this.posts.push(post);
-          loading = false;
-
-        }
-
-        return this.posts[i];
-
-      }, err => {
-        this.morePagesAvailable = false;
-      })
-    }
+    i =  i>=this.posts.length ? this.posts.length-1 : i;
+    return this.posts[i]; 
+    
   }
 
   getPrev(post) {
