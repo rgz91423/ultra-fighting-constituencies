@@ -54,7 +54,11 @@ export class PostPage {
         this.wordpressService.getPost(this.postId)
         .subscribe(data => {
             this.post = data;
-          loading.dismiss();
+            //loading.dismiss();
+            this.getCategories().subscribe(cats=>{
+              this.categories = cats;
+              loading.dismiss();
+            });
         });
       }
    
@@ -75,6 +79,15 @@ export class PostPage {
       */
   }
 
+  swipeEvent(e) {
+    console.log(e.direction);
+    if (e.direction == 2) {
+      this.getPrev();
+    } else if (e.direction == 4) {
+      this.getNext();
+    }
+  }
+
   getAuthorData(){
     return this.wordpressService.getAuthor(this.post.author);
   }
@@ -92,7 +105,7 @@ export class PostPage {
       id: this.prev(this.post).id,
       next:this.next.bind(this),
       prev:this.prev.bind(this)
-    });
+    },{animate: true, direction: "back"});
   }
 
 
@@ -102,7 +115,7 @@ export class PostPage {
       id: this.next(this.post).id,
       next:this.next.bind(this),
       prev:this.prev.bind(this)
-    });
+    },{animate: true, direction: "forward"});
       
    
   }

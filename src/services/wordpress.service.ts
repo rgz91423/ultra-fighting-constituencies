@@ -56,8 +56,35 @@ export class WordpressService {
   }
 
 
+  getPosts(categoryId:number, page:number = 1){
+    //if we want to query posts by category
+    let category_url = categoryId? ("&categories=" + categoryId): "";
+
+    return this.http.get(
+      Config.WORDPRESS_REST_API_URL
+      + 'posts?page=' + page
+      + '&per_page=' + Config.QUERY_SIZE_BIG
+      + '&fields=id,title.rendered'
+      + '&order=asc'
+      + category_url)
+    .map(res => res.json());
+  }
+
   getPost(postId){
     return this.http.get(Config.WORDPRESS_REST_API_URL + "posts/" + postId)
+    .map(res => res.json());
+  }
+
+  getGallery(categoryId:number, page:number = 1){
+    //if we want to query posts by category
+    let category_url = categoryId? ("&categories=" + categoryId): "";
+
+    return this.http.get(
+      Config.WORDPRESS_REST_API_URL
+      + 'posts?page=' + page
+      + '&per_page=' + Config.QUERY_SIZE
+     // + '&fields=id,title.rendered,featured_media,_links'
+      + category_url)
     .map(res => res.json());
   }
 

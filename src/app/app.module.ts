@@ -23,6 +23,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
 
 import { NavController } from 'ionic-angular';
 
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -38,7 +40,9 @@ import { NavController } from 'ionic-angular';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp,{
+      backButtonText: '',
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

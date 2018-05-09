@@ -63,7 +63,8 @@ export class HomePage {
 
   postTapped(event, post) {
 		this.navCtrl.push(PostPage, {
-		  item: post
+      //item: post
+      id: post.id
 		});
   }
 

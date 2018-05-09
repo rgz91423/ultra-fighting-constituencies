@@ -34,10 +34,9 @@
          </ion-col>
        </ion-row>-->
     </ion-card>
-    <ion-infinite-scroll threshold="50%" [enabled]="morePagesAvailable" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll [enabled]="morePagesAvailable" (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more posts ...">
+      loadingSpinner="bubbles">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </ion-content>

@@ -22,7 +22,9 @@ $app-direction: ltr;
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
-
+$text-color: #ffffff;
+$background-color: #222;
+$grid-padding-width: 6px;
 
 
 // Named Color Variables
@@ -46,22 +48,54 @@ $colors: (
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
-
+$card-ios-margin-left: 0;
+$card-ios-margin-right: 0;
+$card-ios-margin-top: 0;
+$card-ios-margin-bottom: 10px;
+$card-ios-text-color: #fff;
+$card-ios-title-text-color: #fff;
+$card-ios-background-color: #303030;
+$card-ios-padding-left:24px;
+$card-ios-padding-right:24px;
+$card-ios-padding-top:8px;
+$card-ios-padding-bottom:8px;
+$card-ios-header-font-size: 2.0rem;
+$toolbar-ios-title-font-size: 2.0rem;
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-
-
+$card-md-margin-left: 0;
+$card-md-margin-right: 0;
+$card-md-margin-top: 0;
+$card-md-margin-bottom: 10px;
+$card-md-text-color: #fff;
+$card-md-title-text-color: #fff;
+$card-md-background-color: #303030;
+$card-md-padding-left:24px;
+$card-md-padding-right:24px;
+$card-md-padding-top:8px;
+$card-md-padding-bottom:8px;
+$toolbar-md-title-font-size: 2.0rem;
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
 
-
-
+$card-wp-margin-left: 0;
+$card-wp-margin-right: 0;
+$card-wp-margin-top: 0;
+$card-wp-margin-bottom: 10px;
+$card-wp-text-color: #fff;
+$card-wp-title-text-color: #fff;
+$card-wp-background-color: #303030;
+$card-wp-padding-left:24px;
+$card-wp-padding-right:24px;
+$card-wp-padding-top:8px;
+$card-wp-padding-bottom:8px;
+$card-wp-header-font-size: 2.0rem;
+$toolbar-wp-title-font-size: 2.0rem;
 
 // App Theme
 // --------------------------------------------------
@@ -70,7 +104,7 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-@import "ionic.theme.default";
+@import "ionic.theme.dark";
 
 
 // Ionicons

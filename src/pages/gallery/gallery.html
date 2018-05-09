@@ -16,10 +16,9 @@
 
     <ion-grid>
         <ion-row>
-          <ion-col  (click)="postTapped($event, post)" col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3 *ngFor="let post of posts">
-                
-           <div *ngIf="post.better_featured_image && post.better_featured_image.source_url"><ion-img width="100" height="100" src="{{post.better_featured_image.source_url}}"></ion-img></div>
-          </ion-col>
+           <ion-thumbnail col-3  *ngFor="let post of posts" >
+            <img (click)="postTapped($event, post)"   [src]="getThumbnail(post)">
+           </ion-thumbnail>
         </ion-row>
       </ion-grid>
 
@@ -27,7 +26,7 @@
     <ion-infinite-scroll [enabled]="morePagesAvailable" (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content
       loadingSpinner="bubbles"
-      loadingText="Loading more posts ...">
+      >
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </ion-content>

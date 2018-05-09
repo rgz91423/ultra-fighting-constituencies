@@ -5,32 +5,31 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="content">
-    <button ion-button (click)="getPrev()">Prev</button>
-    <button ion-button (click)="getNext()">Next</button>
+<ion-content class="content" >
+  <div  (swipe)="swipeEvent($event)" >
+    
    
   <div *ngIf="post" class="post">
     <div class="post-title" [innerHTML]="post.title.rendered"></div>
-    <p class="post-content" [innerHTML]="post.content.rendered"></p>
-    <ion-row>
-      <ion-col>
-        <ion-icon name='md-calendar'></ion-icon>
-        {{post.date.split('T')[0]}}
-      </ion-col>
-      <ion-col text-right>
-        <ion-icon name="person"></ion-icon>
-        {{user}}
-      </ion-col>
-    </ion-row>
-    <p class="bold-title">Categories:</p>
-    <ion-grid>
       <ion-row>
         <ion-col class="category-col" *ngFor="let category of categories">
           <ion-badge (click)="goToCategoryPosts(category.id, category.name)">{{category.name}}</ion-badge>
         </ion-col>
+        <ion-col text-right>
+          {{post.date.split('T')[0]}}
+        </ion-col>
       </ion-row>
-    </ion-grid>
-    <p class="bold-title">Comments:</p>
+    <p class="post-content" [innerHTML]="post.content.rendered"></p>
+   <!-- <ion-row>
+      
+      <ion-col text-right>
+        <ion-icon name="person"></ion-icon>
+        {{user}}
+      </ion-col>
+    </ion-row>-->
+    
+   
+    <p class="bold-title">評語：</p>
     <ion-item *ngFor="let comment of comments">
       <ion-avatar item-start>
         <img src="{{comment.author_avatar_urls[24]}}">
@@ -40,16 +39,25 @@
     </ion-item>
     <ion-infinite-scroll [enabled]="morePagesAvailable" (ionInfinite)="loadMoreComments($event)">
       <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more comments...">
+      loadingSpinner="bubbles">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
  </div>
 
-
+</div>
 </ion-content>
 <ion-footer>
  <ion-toolbar>
-  <button ion-button block (click)="createComment()">Add a Comment</button>
+ <!-- <button ion-button block (click)="createComment()">Add a Comment</button>-->
+  <ion-buttons padding start>
+      <button ion-button color="light" clear icon-start (click)="getPrev()">
+        <ion-icon name='arrow-back'></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons padding end>
+      <button ion-button color="light" clear icon-end (click)="getNext()">
+        <ion-icon name='arrow-forward'></ion-icon>
+      </button>
+    </ion-buttons>
  </ion-toolbar>
 </ion-footer>
