@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component , ViewChild } from '@angular/core';
 import { PostPage } from '../post/post';
 import { LoginPage } from '../login/login';
-import { NavController, LoadingController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, LoadingController, NavParams, ModalController, Content, Card } from 'ionic-angular';
 import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import * as Config from '../../config';
+import { ShrinkingSegmentHeader } from '../../components/shrinking-segment-header/shrinking-segment-header';
 
 
 @Component({
@@ -13,6 +14,7 @@ import * as Config from '../../config';
 })
 export class PostsPage {
 
+  scrollDirection: string;
   /*
   tab1Root = PostPage;
   tab2Root = PostPage;
@@ -25,6 +27,10 @@ export class PostsPage {
 
   categoryId: number;
   categoryTitle: string;
+
+  category: any;
+
+
 
   constructor(
     public navCtrl: NavController,
@@ -46,6 +52,8 @@ export class PostsPage {
     //if we are browsing a category
     this.categoryId = this.navParams.get('id');
     this.categoryTitle = this.navParams.get('title');
+
+    this.getCategory();
 
     if(!(this.posts.length > 0)){
       let loading = this.loadingCtrl.create();
@@ -125,6 +133,37 @@ export class PostsPage {
     let i = this.posts.findIndex(p=>p.id==post.id)-1;
     i = i<0 ? 0 : i;
     return this.posts[i];
+  }
+
+
+  getCategory() {
+    let loading = true;
+
+    this.wordpressService.getCategory(this.categoryId)
+    .subscribe(data => {
+        this.category = data;
+        loading = false;
+    })
+  }
+
+
+
+  scrollHandler(ev) {
+
+    ev.domWrite(() => {
+      
+      if (ev.directionY=="up") {
+        
+ 
+        this.scrollDirection = "up";
+      } else if (ev.directionY=="down") {
+        this.scrollDirection = "down";
+      }
+
+      console.log("writed " + this.scrollDirection);
+ 
+   });
+ 
   }
 
 

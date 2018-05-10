@@ -11,6 +11,7 @@ import { RegisterPage } from '../pages/register/register';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { GalleryPage } from '../pages/gallery/gallery';
+import { GalleryItemPage } from '../pages/gallery-item/gallery-item';
 import { CategoriesPage } from '../pages/categories/categories';
 
 
@@ -23,6 +24,9 @@ import { NativeStorage } from '@ionic-native/native-storage';
 
 import { NavController } from 'ionic-angular';
 
+import { ShrinkingSegmentHeader } from '../components/shrinking-segment-header/shrinking-segment-header';
+
+
 
 
 @NgModule({
@@ -32,10 +36,12 @@ import { NavController } from 'ionic-angular';
     PostsPage,
     HomePage,
     GalleryPage,
+    GalleryItemPage,
     LoginPage,
     CategoriesPage,
     RegisterPage,
-    TabsPage
+    TabsPage,
+    ShrinkingSegmentHeader
   ],
   imports: [
     BrowserModule,
@@ -54,7 +60,9 @@ import { NavController } from 'ionic-angular';
     CategoriesPage,
     RegisterPage,
     GalleryPage,
+    GalleryItemPage,
     TabsPage
+    
   ],
   providers: [
     StatusBar,

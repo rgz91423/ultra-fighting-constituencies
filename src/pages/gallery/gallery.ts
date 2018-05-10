@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { PostPage } from '../post/post';
+import { GalleryItemPage } from '../gallery-item/gallery-item';
 import { LoginPage } from '../login/login';
-import { NavController, LoadingController, NavParams } from 'ionic-angular';
+import { NavController, LoadingController, NavParams, ModalController } from 'ionic-angular';
 import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
 
@@ -28,6 +28,7 @@ export class GalleryPage {
 
   constructor(
     public navCtrl: NavController,
+    public modalCtrl: ModalController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public wordpressService: WordpressService,
@@ -62,11 +63,12 @@ export class GalleryPage {
   }
 
   postTapped(event, post) {
-		this.navCtrl.push(PostPage, {
+		let modal = this.modalCtrl.create(GalleryItemPage, {
       id: post.id,
       next:this.getNext.bind(this),
       prev:this.getPrev.bind(this)
     });
+    modal.present();
   }
 
   doInfinite(infiniteScroll) {

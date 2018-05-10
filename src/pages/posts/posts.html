@@ -14,9 +14,21 @@
     </ion-buttons>-->
     
   </ion-navbar>
+  
+      <ion-card *ngIf="category" class="category-thumbnail {{scrollDirection}}">
+          <img *ngIf="category.description" [src]="category.description"/>
+          <div class="card-title" [innerHTML]="category.name"></div>
+          <div class="card-subtitle" [innerHTML]="scrollDirection"></div>
+      </ion-card>
+
+    
+
 </ion-header>
 
-<ion-content class="content">
+
+
+<ion-content (ionScroll)="scrollHandler($event)"  class="content {{scrollDirection}}">
+    
     <ion-card *ngFor="let post of posts" >
       <ion-card-content (click)="postTapped($event, post)">
         <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
@@ -40,6 +52,7 @@
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </ion-content>
+
   
   
   
