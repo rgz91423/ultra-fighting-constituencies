@@ -16,8 +16,8 @@
 
     <ion-grid>
         <ion-row>
-           <ion-thumbnail col-4  *ngFor="let post of posts" >
-            <img (click)="postTapped($event, post)"   [src]="getThumbnail(post)">
+           <ion-thumbnail col-4  *ngFor="let post of posts; let i = index" >
+            <img (click)="postTapped($event, i)"   [src]="getThumbnail(post)">
            </ion-thumbnail>
         </ion-row>
       </ion-grid>

@@ -2,7 +2,7 @@
     <ion-navbar color="dark">
       <ion-title *ngIf="post" >{{post.title.rendered}}</ion-title>
       <ion-buttons right>
-          <button ion-button icon-only (click)="close()">
+          <button ion-button icon-only (click)="dismiss()">
               <ion-icon name="close"></ion-icon>	
           </button>
       </ion-buttons>
@@ -17,47 +17,42 @@
   
   
   <ion-content class="content" >
-    <div  (swipe)="swipeEvent($event)" >
       
-           
+    <ion-slides #slides [initialSlide]="index" (ionSlideWillChange)="getDetail()" (ionSlideReachEnd)="doInfinite()" [centeredSlides]="false">
+      <ion-slide *ngFor="let post of posts" >       
      
-    <div *ngIf="post" class="post">
-      
-      <img [src]="getImage(post)" class="slider__image"/>
-      <!--<div class="post-title" [innerHTML]="post.title.rendered"></div>-->
-      <p class="slider__imagecaption" [innerHtml]="post.content.rendered"></p>
-      
-        <ion-row>
-         
-          <ion-col text-right>
-            {{post.date.split('T')[0]}}
-          </ion-col>
-        </ion-row>
-     <!-- <ion-row>
-        
-        <ion-col text-right>
-          <ion-icon name="person"></ion-icon>
-          {{user}}
-        </ion-col>
-      </ion-row>-->
-      
-     
-      <p class="bold-title">評語：</p>
-      <ion-item *ngFor="let comment of comments">
-        <ion-avatar item-start>
-          <img src="{{comment.author_avatar_urls[24]}}">
-        </ion-avatar>
-        <h2>{{comment.author_name}}</h2>
-        <p [innerHTML]="comment.content.rendered"></p>
-      </ion-item>
-      <ion-infinite-scroll [enabled]="morePagesAvailable" (ionInfinite)="loadMoreComments($event)">
-        <ion-infinite-scroll-content
-        loadingSpinner="bubbles">
-        </ion-infinite-scroll-content>
-      </ion-infinite-scroll>
-   </div>
+          <div *ngIf="post.detailed">
+            
+            <img [src]="getImage(post)" class="slider__image"/>
+            <!--<div class="post-title" [innerHTML]="post.title.rendered"></div>-->
+            <p class="slider__imagecaption" [innerHtml]="post.content.rendered"></p>
+            
+              <ion-row>
+              
+                <ion-col text-right>
+                  {{post.date.split('T')[0]}}
+                </ion-col>
+              </ion-row>
+          
+            <p class="bold-title">評語：</p>
+            <ion-item *ngFor="let comment of comments">
+              <ion-avatar item-start>
+                <img src="{{comment.author_avatar_urls[24]}}">
+              </ion-avatar>
+              <h2>{{comment.author_name}}</h2>
+              <p [innerHTML]="comment.content.rendered"></p>
+            </ion-item>
+            <ion-infinite-scroll [enabled]="morePagesAvailable" (ionInfinite)="loadMoreComments($event)">
+              <ion-infinite-scroll-content
+              loadingSpinner="bubbles">
+              </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </div>
+
+     </ion-slide>
+   </ion-slides>     
   
-  </div>
+
   </ion-content>
   <ion-footer>
    <ion-toolbar>

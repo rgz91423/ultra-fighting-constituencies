@@ -62,13 +62,17 @@ export class GalleryPage {
     }
   }
 
-  postTapped(event, post) {
-		let modal = this.modalCtrl.create(GalleryItemPage, {
-      id: post.id,
-      next:this.getNext.bind(this),
-      prev:this.getPrev.bind(this)
+  postTapped(event, index) {
+		let postModal = this.modalCtrl.create(GalleryItemPage,  {
+      posts: this.posts,
+      index: index,
+      category: this.categoryId
     });
-    modal.present();
+    postModal.present();
+    postModal.onDidDismiss(data => {
+      console.log(data);
+      this.posts = data;
+    });
   }
 
   doInfinite(infiniteScroll) {

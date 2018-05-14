@@ -25,8 +25,7 @@ export class PostPage {
   index:number;
 
   user: string;
-  comments: Array<any> = new Array<any>();
- // categories: Array<any> = new Array<any>();
+  categories: Array<any> = new Array<any>();
   morePagesAvailable: boolean = true;
   
 
@@ -117,7 +116,7 @@ export class PostPage {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss(this.posts);
   }
 
   getAuthorData(post){
@@ -134,13 +133,12 @@ export class PostPage {
 
   
 
-
   loadMoreComments(post, infiniteScroll) {
-    let page = (this.comments.length/10) + 1;
+    let page = (post.comments.length/10) + 1;
     this.wordpressService.getComments(post.id, page)
     .subscribe(data => {
       for(let item of data){
-        this.comments.push(item);
+        post.comments.push(item);
       }
       infiniteScroll.complete();
     }, err => {
@@ -179,6 +177,13 @@ export class PostPage {
     })
   }
 
+getNext(){
+  this.slides.slideNext();
+}
+
+getPrev(){
+  this.slides.slidePrev();
+}
 
 
 

@@ -86,6 +86,7 @@ export class PostsPage {
     postModal.present();
     postModal.onDidDismiss(data => {
       console.log(data);
+      this.posts = data;
     });
 
   }

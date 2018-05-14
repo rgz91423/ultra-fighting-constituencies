@@ -1,0 +1,34 @@
+page-gallery-item {
+    .post {
+      padding: 12px;
+    }
+  
+    .post-title{
+      display: block;
+      font-size: 2.4rem;
+      line-height: 1.4;
+      margin: 6px 0;
+      padding: 8px 0;
+    }
+  
+    .post-content{
+      margin: 0 0 2px;
+      font-size: 1.8rem;
+      line-height: 1.6;
+    }
+  
+   
+    .post img{
+      height: 100%;
+    }
+  
+    .swiper-slide {
+      overflow-y: scroll;
+      display: block;
+      .post {
+        text-align: left!important;
+      }
+    }
+  }
+  
+  
