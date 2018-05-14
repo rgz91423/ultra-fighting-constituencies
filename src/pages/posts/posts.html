@@ -16,9 +16,8 @@
   </ion-navbar>
   
       <ion-card *ngIf="category" class="category-thumbnail {{scrollDirection}}">
-          <img *ngIf="category.description" [src]="category.description"/>
+          <img *ngIf="category.description" [src]="category.img_large"/>
           <div class="card-title" [innerHTML]="category.name"></div>
-          <div class="card-subtitle" [innerHTML]="scrollDirection"></div>
       </ion-card>
 
     
@@ -29,8 +28,8 @@
 
 <ion-content (ionScroll)="scrollHandler($event)"  class="content {{scrollDirection}}">
     
-    <ion-card *ngFor="let post of posts" >
-      <ion-card-content (click)="postTapped($event, post)">
+    <ion-card *ngFor="let post of posts; let i = index" >
+      <ion-card-content (click)="postTapped($event, i)">
         <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
       </ion-card-content>
       <!--<ion-row no-padding>
@@ -46,7 +45,7 @@
          </ion-col>
        </ion-row>-->
     </ion-card>
-    <ion-infinite-scroll [enabled]="morePagesAvailable" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll  [enabled]="morePagesAvailable" (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content
       loadingSpinner="bubbles">
       </ion-infinite-scroll-content>

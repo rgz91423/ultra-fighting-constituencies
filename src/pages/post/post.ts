@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { NavParams, NavController, LoadingController, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavParams, NavController, LoadingController, AlertController, Slides, ViewController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Observable } from "rxjs/Observable";
+import * as Config from '../../config';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/forkJoin';
 
@@ -14,40 +15,47 @@ import 'rxjs/add/observable/forkJoin';
 })
 export class PostPage {
 
-  post: any;
+  @ViewChild(Slides) slides: Slides;
+
+  //post: any;
+
+  posts: Array<any> = new Array<any>();
   postId: number;
   categoryId: number;
+  index:number;
+
   user: string;
   comments: Array<any> = new Array<any>();
-  categories: Array<any> = new Array<any>();
+ // categories: Array<any> = new Array<any>();
   morePagesAvailable: boolean = true;
-  prev:any;
-  next:any;
+  
+
 
   constructor(
     public navParams: NavParams,
     public navCtrl: NavController,
+    public viewCtrl: ViewController,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public wordpressService: WordpressService,
     public authenticationService: AuthenticationService
   ) {
-
-  }
-
-  ionViewWillEnter(){
     this.morePagesAvailable = true;
     let loading = this.loadingCtrl.create();
 
     //loading.present();
 
-    this.post = this.navParams.get('item');
-    this.postId = this.navParams.get('id');
+    //this.post = this.navParams.get('item');
+    //this.postId = this.navParams.get('id');
+    this.posts  = this.navParams.get('posts');
     this.categoryId = this.navParams.get('category');
+    this.index = +this.navParams.get('index');
+  }
 
-    this.prev = this.navParams.get('prev');
-    this.next = this.navParams.get('next');
+  ionViewWillEnter(){
    
+   
+    /*
       if(!(this.post)){
         loading.present();
 
@@ -61,7 +69,7 @@ export class PostPage {
             });
         });
       }
-   
+   */
      // console.log("prev ctrl:");
      // console.log(this.navCtrl.getPrevious().component.postList);
       
@@ -79,51 +87,57 @@ export class PostPage {
       */
   }
 
-  swipeEvent(e) {
-    console.log(e.direction);
-    if (e.direction == 2) {
-      this.getPrev();
-    } else if (e.direction == 4) {
-      this.getNext();
+  getDetail(){
+
+
+    let theIndex = this.slides.getActiveIndex() || this.index;
+    let post = this.posts[theIndex];
+    console.log(theIndex+" " + post);
+   
+
+    let loading = this.loadingCtrl.create();
+    if(!post || !post.detailed){
+      loading.present();
+
+      this.wordpressService.getPost(post.id)
+      .subscribe(data => {
+          post = data;
+          post.detailed=true;
+          this.posts[theIndex] = post;
+          console.log(post);
+          
+          //loading.dismiss();
+          this.getCategories(post).subscribe(cats=>{
+            post.categories = cats;
+            this.slides.update();
+            loading.dismiss();
+          });
+      });
     }
   }
 
-  getAuthorData(){
-    return this.wordpressService.getAuthor(this.post.author);
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 
-  getCategories(){
-    return this.wordpressService.getPostCategories(this.post);
+  getAuthorData(post){
+    return this.wordpressService.getAuthor(post.author);
   }
 
-  getComments(){
-    return this.wordpressService.getComments(this.post.id);
+  getCategories(post){
+    return this.wordpressService.getPostCategories(post);
   }
 
-  getPrev() {
-    this.navCtrl.push(PostPage,{
-      id: this.prev(this.post).id,
-      next:this.next.bind(this),
-      prev:this.prev.bind(this)
-    },{animate: true, direction: "back"});
+  getComments(post){
+    return this.wordpressService.getComments(post.id);
   }
 
-
-  getNext() {
-    
-    this.navCtrl.push(PostPage,{
-      id: this.next(this.post).id,
-      next:this.next.bind(this),
-      prev:this.prev.bind(this)
-    },{animate: true, direction: "forward"});
-      
-   
-  }
+  
 
 
-  loadMoreComments(infiniteScroll) {
+  loadMoreComments(post, infiniteScroll) {
     let page = (this.comments.length/10) + 1;
-    this.wordpressService.getComments(this.post.id, page)
+    this.wordpressService.getComments(post.id, page)
     .subscribe(data => {
       for(let item of data){
         this.comments.push(item);
@@ -142,7 +156,33 @@ export class PostPage {
     })
   }
 
-  createComment(){
+
+
+  doInfinite() {
+
+
+    let page = (Math.ceil(this.posts.length/Config.QUERY_SIZE)) + 1;
+    let loading = this.loadingCtrl.create();
+      loading.present();
+
+    this.wordpressService.getPosts(this.categoryId, page)
+    .subscribe(data => {
+      for(let post of data){
+        loading.dismiss();
+       // post.excerpt.rendered = post.excerpt.rendered.split('<a')[0] + "</p>";
+        this.posts.push(post);
+      }
+
+    }, err => {
+      this.morePagesAvailable = false;
+      loading.dismiss();
+    })
+  }
+
+
+
+
+  createComment(post){
     let user: any;
 
     this.authenticationService.getUser()
@@ -170,11 +210,11 @@ export class PostPage {
           handler: data => {
             let loading = this.loadingCtrl.create();
             loading.present();
-            this.wordpressService.createComment(this.post.id, user, data.comment)
+            this.wordpressService.createComment(post.id, user, data.comment)
             .subscribe(
               (data) => {
                 console.log("ok", data);
-                this.getComments();
+                this.getComments(post);
                 loading.dismiss();
               },
               (err) => {

@@ -110,4 +110,13 @@ export class CategoriesPage {
   goToLogin(){
     this.navCtrl.push(LoginPage);
   }
+
+  getThumbnail(post) {
+    try {
+      return post.better_featured_image.media_details.sizes.thumbnail.source_url; 
+    } catch (e) {
+      return undefined;
+    }
+  }
+  
 }

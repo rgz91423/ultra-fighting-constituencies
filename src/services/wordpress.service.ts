@@ -82,7 +82,7 @@ export class WordpressService {
     return this.http.get(
       Config.WORDPRESS_REST_API_URL
       + 'posts?page=' + page
-      + '&per_page=' + Config.QUERY_SIZE
+      + '&per_page=' + Config.QUERY_SIZE_GALLERY
      // + '&fields=id,title.rendered,featured_media,_links'
       + category_url)
     .map(res => res.json());

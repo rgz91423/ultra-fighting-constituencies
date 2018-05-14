@@ -25,6 +25,7 @@ $app-direction: ltr;
 $text-color: #ffffff;
 $background-color: #222;
 $grid-padding-width: 6px;
+$list-border-color: #cccccc;
 
 
 // Named Color Variables
@@ -61,6 +62,9 @@ $card-ios-padding-top:8px;
 $card-ios-padding-bottom:8px;
 $card-ios-header-font-size: 1.8rem;
 $toolbar-ios-title-font-size: 2.0rem;
+$item-ios-thumbnail-size: 120px;
+$item-ios-padding-left: 0;
+$list-ios-header-font-size: 2.0rem;
 
 // App Material Design Variables
 // --------------------------------------------------
@@ -78,6 +82,8 @@ $card-md-padding-right:24px;
 $card-md-padding-top:8px;
 $card-md-padding-bottom:8px;
 $toolbar-md-title-font-size: 1.8rem;
+$item-md-thumbnail-size: 120px;
+$item-md-padding-left: 0;
 
 // App Windows Variables
 // --------------------------------------------------
@@ -96,6 +102,8 @@ $card-wp-padding-top:8px;
 $card-wp-padding-bottom:8px;
 $card-wp-header-font-size: 2.0rem;
 $toolbar-wp-title-font-size: 1.8rem;
+$item-wp-thumbnail-size: 120px;
+$item-wp-padding-left: 0;
 
 // App Theme
 // --------------------------------------------------

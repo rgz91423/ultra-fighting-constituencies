@@ -32,5 +32,13 @@ page-post {
   .post img{
     height: 100%;
   }
+
+  .swiper-slide {
+    overflow-y: scroll;
+    display: block;
+    .post {
+      text-align: left!important;
+    }
+  }
 }
 

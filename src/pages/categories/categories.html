@@ -9,12 +9,20 @@
 
 <ion-content class="content categories-page">
 
+
+    <ion-list>
+        <ion-item (click)="goToCategoryPosts(category.id, category.name)" *ngFor="let category of categories">
+          <ion-thumbnail item-start>
+            <img *ngIf="category.description" [src]="category.img_thumbnail">
+          </ion-thumbnail>
+          <h2 [innerHTML]="category.name"></h2>
+          <p>共{{category.count}}篇</p>
+          <button ion-button clear item-end><ion-icon name='arrow-forward'></ion-icon></button>
+        </ion-item>
+    </ion-list>
+
    
-    <ion-card (click)="goToCategoryPosts(category.id, category.name)" *ngFor="let category of categories">
-        <img *ngIf="category.description" [src]="category.description"/>
-        <div class="card-title" [innerHTML]="category.name"></div>
-        <div class="card-subtitle">共{{category.count}}篇</div>
-    </ion-card>
+   
    
     <ion-infinite-scroll [enabled]="morePagesAvailable" (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content

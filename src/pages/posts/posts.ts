@@ -1,4 +1,4 @@
-import { Component , ViewChild } from '@angular/core';
+import { Component , ViewChild, NgZone } from '@angular/core';
 import { PostPage } from '../post/post';
 import { LoginPage } from '../login/login';
 import { NavController, LoadingController, NavParams, ModalController, Content, Card } from 'ionic-angular';
@@ -38,7 +38,8 @@ export class PostsPage {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public wordpressService: WordpressService,
-    public authenticationService: AuthenticationService
+    public authenticationService: AuthenticationService,
+    private zone: NgZone
   ) {}
 
   ionViewWillEnter() {
@@ -70,20 +71,22 @@ export class PostsPage {
     }
   }
 
-  postTapped(event, post) {
-		this.navCtrl.push(PostPage, {
+  postTapped(event, index) {
+		/*this.navCtrl.push(PostPage, {
       id: post.id,
       next:this.getNext.bind(this),
       prev:this.getPrev.bind(this)
-    });
-    /*
+    });*/
+    
    let postModal = this.modalCtrl.create(PostPage,  {
-      item: post,
-      next:this.getNext.bind(this),
-      prev:this.getPrev.bind(this)
+      posts: this.posts,
+      index: index,
+      category: this.categoryId
     });
     postModal.present();
-*/
+    postModal.onDidDismiss(data => {
+      console.log(data);
+    });
 
   }
 
@@ -118,31 +121,13 @@ export class PostsPage {
     this.navCtrl.push(LoginPage);
   }
 
-  public get postList() {
-    return this.postList;
-  }
-
-  getNext(post) {
-    let i = this.posts.findIndex(p=>p.id==post.id)+1;
-    i =  i>=this.posts.length ? this.posts.length-1 : i;
-    return this.posts[i]; 
-    
-  }
-
-  getPrev(post) {
-    let i = this.posts.findIndex(p=>p.id==post.id)-1;
-    i = i<0 ? 0 : i;
-    return this.posts[i];
-  }
-
+ 
 
   getCategory() {
-    let loading = true;
-
+   
     this.wordpressService.getCategory(this.categoryId)
     .subscribe(data => {
         this.category = data;
-        loading = false;
     })
   }
 
@@ -150,11 +135,10 @@ export class PostsPage {
 
   scrollHandler(ev) {
 
-    ev.domWrite(() => {
+
+    this.zone.run(() => {
       
       if (ev.directionY=="up") {
-        
- 
         this.scrollDirection = "up";
       } else if (ev.directionY=="down") {
         this.scrollDirection = "down";
