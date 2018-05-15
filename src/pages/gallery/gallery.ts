@@ -115,16 +115,5 @@ export class GalleryPage {
     }
   }
 
-  getNext(post) {
-    let i = this.posts.findIndex(p=>p.id==post.id)+1;
-    i =  i>=this.posts.length ? this.posts.length-1 : i;
-    return this.posts[i]; 
-    
-  }
-
-  getPrev(post) {
-    let i = this.posts.findIndex(p=>p.id==post.id)-1;
-    i = i<0 ? 0 : i;
-    return this.posts[i];
-  }
+  
 }

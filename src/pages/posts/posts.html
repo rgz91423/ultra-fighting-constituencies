@@ -15,10 +15,7 @@
     
   </ion-navbar>
   
-      <ion-card *ngIf="category" class="category-thumbnail {{scrollDirection}}">
-          <img *ngIf="category.description" [src]="category.img_large"/>
-          <div class="card-title" [innerHTML]="category.name"></div>
-      </ion-card>
+    
 
     
 
@@ -26,25 +23,21 @@
 
 
 
-<ion-content (ionScroll)="scrollHandler($event)"  class="content {{scrollDirection}}">
-    
-    <ion-card *ngFor="let post of posts; let i = index" >
-      <ion-card-content (click)="postTapped($event, i)">
-        <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
-      </ion-card-content>
-      <!--<ion-row no-padding>
-         <ion-col>
-           <button ion-button clear small color="primary" icon-start>
-             {{post.date.split('T')[0]}}
-           </button>
-         </ion-col>
-         <ion-col text-right>
-           <button ion-button small color="primary"  icon-start>
-              Read More
-           </button>
-         </ion-col>
-       </ion-row>-->
+
+    <ion-card *ngIf="category" class="category-thumbnail {{scrollDirection}}">
+        <img *ngIf="category.description" [src]="category.img_large"/>
+        <div class="card-title" [innerHTML]="category.name"></div>
     </ion-card>
+<ion-content (ionScroll)="scrollHandler($event)"  class="content {{scrollDirection}}">
+  <ion-list  >  
+    <ng-container *ngFor="let post of posts; let i = index" >
+      <ion-item (click)="postTapped($event, i)">
+        <h2 [innerHTML]="post.title.rendered"></h2>
+      </ion-item>
+    
+    </ng-container>
+  </ion-list>
+
     <ion-infinite-scroll  [enabled]="morePagesAvailable" (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content
       loadingSpinner="bubbles">

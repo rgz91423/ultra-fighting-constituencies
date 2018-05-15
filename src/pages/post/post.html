@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title *ngIf="post" >{{post.title.rendered}}</ion-title>
+  <ion-navbar>
+    <ion-title *ngIf="posts" >{{posts[index].title.rendered}}</ion-title>
     <ion-buttons start>
       <button ion-button icon-only (click)="dismiss()">
         <ion-icon name="list"></ion-icon>	
@@ -11,11 +11,11 @@
 
 <ion-content class="content" >
 
-    <ion-slides #slides [initialSlide]="index" (ionSlideWillChange)="getDetail()" (ionSlideReachEnd)="doInfinite()" [centeredSlides]="false">
+    <ion-slides #slides [initialSlide]="index" (ionSlideWillChange)="getDetail()" (ionSlideReachEnd)="doInfinite()">
         <ion-slide *ngFor="let post of posts" >
             <div *ngIf="post && post.detailed" class="post">
-              <div class="post-title" [innerHTML]="post.title.rendered"></div>
-                <ion-row>
+              <!--<div class="post-title" [innerHTML]="post.title.rendered"></div>-->
+              <ion-row>
                   <ion-col class="category-col" *ngFor="let category of post.categories">
                     <ion-badge (click)="goToCategoryPosts(category.id, category.name)">{{category.name}}</ion-badge>
                   </ion-col>
@@ -25,6 +25,8 @@
                 </ion-row>
                
               <p class="post-content" [innerHTML]="post.content.rendered"></p>
+
+              
            
             <!--
               <p class="bold-title">評語：</p>

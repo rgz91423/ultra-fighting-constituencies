@@ -16,8 +16,8 @@
             <img *ngIf="category.description" [src]="category.img_thumbnail">
           </ion-thumbnail>
           <h2 [innerHTML]="category.name"></h2>
-          <p>共{{category.count}}篇</p>
-          <button ion-button clear item-end><ion-icon name='arrow-forward'></ion-icon></button>
+          <p>{{category.count}}篇</p>
+          <button ion-button clear item-end><ion-icon name='arrow-forward'  color="bright"></ion-icon></button>
         </ion-item>
     </ion-list>
 

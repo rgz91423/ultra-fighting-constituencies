@@ -1,11 +1,11 @@
-import { Component , ViewChild, NgZone } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { PostPage } from '../post/post';
 import { LoginPage } from '../login/login';
-import { NavController, LoadingController, NavParams, ModalController, Content, Card } from 'ionic-angular';
+import { NavController, LoadingController, NavParams, ModalController } from 'ionic-angular';
 import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import * as Config from '../../config';
-import { ShrinkingSegmentHeader } from '../../components/shrinking-segment-header/shrinking-segment-header';
+//import { ShrinkingSegmentHeader } from '../../components/shrinking-segment-header/shrinking-segment-header';
 
 
 @Component({

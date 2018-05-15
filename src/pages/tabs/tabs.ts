@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { LoginPage } from '../login/login';
-import { PostPage } from '../post/post';
+//import { LoginPage } from '../login/login';
+//import { PostPage } from '../post/post';
 import { HomePage } from '../home/home';
 import { GalleryPage } from '../gallery/gallery';
 import { CategoriesPage } from '../categories/categories';

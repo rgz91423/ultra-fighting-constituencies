@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { PostPage } from '../post/post';
+//import { PostPage } from '../post/post';
 import { NavController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import * as Config from '../../config';
+//import * as Config from '../../config';
 import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
 

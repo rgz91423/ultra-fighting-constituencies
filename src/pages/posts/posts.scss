@@ -2,8 +2,8 @@
 page-posts{
 
     ion-card.category-thumbnail {
-
-        height:280px;
+        top:42px;
+        height: calc(100vh/3);
         position: relative;
         text-align: right;
         transition: height .5s;
@@ -28,27 +28,37 @@ page-posts{
             position:relative; top:-50%;
             transition: top .5s;
         }
-        
-       
     
-    
-    }
-
-    .content {
-        margin-top:290px;
-        transition: height .5s;
-        margin-bottom:100px;
-    }
-
-    .content.down {
-        margin-top:90px;
     }
 
     ion-card.category-thumbnail.down {
-        height:90px;
+        height: calc(100vh/6);
         img {
             position:relative; top:-150%;
         }
     }
+    .content {
+        top: calc(100vh/3);
+        height: calc(((100vh/3)*2));
+        transition: height .5s;
+    }
+    .content.down {
+        top: calc(100vh/6);
+        height: calc(((100vh/6)*5));
+    }
+    ion-list ion-item {
+        ion-thumbnail {
+          margin:0!important;
+        }
+    
+        .item-inner {
+          padding:8px 10px 8px 20px;
+          h2 {
+              font-size:2.0rem;
+          }
+        }
+    }
+
+    
 }
   

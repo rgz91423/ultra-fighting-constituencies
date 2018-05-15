@@ -1,7 +1,7 @@
-  <ion-header no-border>
-    <ion-navbar color="dark">
-      <ion-title *ngIf="post" >{{post.title.rendered}}</ion-title>
-      <ion-buttons right>
+  <ion-header>
+    <ion-navbar>
+        <ion-title *ngIf="posts" >{{posts[index].title.rendered}}</ion-title>
+      <ion-buttons start>
           <button ion-button icon-only (click)="dismiss()">
               <ion-icon name="close"></ion-icon>	
           </button>
@@ -9,32 +9,30 @@
     </ion-navbar>
   </ion-header>
   
-  <ion-content color="dark">
-      
-              
-      
-  </ion-content>
+
   
   
-  <ion-content class="content" >
+  <ion-content class="content"  color="dark" >
       
-    <ion-slides #slides [initialSlide]="index" (ionSlideWillChange)="getDetail()" (ionSlideReachEnd)="doInfinite()" [centeredSlides]="false">
+    <ion-slides #slides [initialSlide]="index" (ionSlideWillChange)="getDetail()" (ionSlideReachEnd)="doInfinite()" >
       <ion-slide *ngFor="let post of posts" >       
      
-          <div *ngIf="post.detailed">
+          <div *ngIf="post.detailed"  >
             
-            <img [src]="getImage(post)" class="slider__image"/>
+            <img [src]="getImage(post)"  class="slider__image"/>
             <!--<div class="post-title" [innerHTML]="post.title.rendered"></div>-->
-            <p class="slider__imagecaption" [innerHtml]="post.content.rendered"></p>
-            
+            <div class="slider__imagecaption" ion-fixed>
+              <p  [innerHtml]="post.content.rendered"></p>
               <ion-row>
+                  <ion-col text-right>
+                    {{post.date.split('T')[0]}}
+                  </ion-col>
+                </ion-row>
+            </div>
+
               
-                <ion-col text-right>
-                  {{post.date.split('T')[0]}}
-                </ion-col>
-              </ion-row>
           
-            <p class="bold-title">評語：</p>
+           <!-- <p class="bold-title">評語：</p>
             <ion-item *ngFor="let comment of comments">
               <ion-avatar item-start>
                 <img src="{{comment.author_avatar_urls[24]}}">
@@ -46,7 +44,7 @@
               <ion-infinite-scroll-content
               loadingSpinner="bubbles">
               </ion-infinite-scroll-content>
-            </ion-infinite-scroll>
+            </ion-infinite-scroll>-->
         </div>
 
      </ion-slide>

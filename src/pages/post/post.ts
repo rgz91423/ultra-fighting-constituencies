@@ -4,7 +4,7 @@ import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Observable } from "rxjs/Observable";
+//import { Observable } from "rxjs/Observable";
 import * as Config from '../../config';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/forkJoin';
@@ -40,8 +40,7 @@ export class PostPage {
     public authenticationService: AuthenticationService
   ) {
     this.morePagesAvailable = true;
-    let loading = this.loadingCtrl.create();
-
+ 
     //loading.present();
 
     //this.post = this.navParams.get('item');
@@ -49,11 +48,13 @@ export class PostPage {
     this.posts  = this.navParams.get('posts');
     this.categoryId = this.navParams.get('category');
     this.index = +this.navParams.get('index');
+
+    
   }
 
   ionViewWillEnter(){
    
-   
+    if (this.slides.isBeginning()) this.getDetail();
     /*
       if(!(this.post)){
         loading.present();
@@ -88,10 +89,10 @@ export class PostPage {
 
   getDetail(){
 
-
     let theIndex = this.slides.getActiveIndex() || this.index;
     let post = this.posts[theIndex];
-    console.log(theIndex+" " + post);
+    this.index = theIndex;
+    //console.log(theIndex+" " + post);
    
 
     let loading = this.loadingCtrl.create();

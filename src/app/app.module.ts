@@ -22,7 +22,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NativeStorage } from '@ionic-native/native-storage';
 
-import { NavController } from 'ionic-angular';
 
 import { ShrinkingSegmentHeader } from '../components/shrinking-segment-header/shrinking-segment-header';
 

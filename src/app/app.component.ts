@@ -4,12 +4,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { GalleryPage } from '../pages/gallery/gallery';
-import { LoginPage } from '../pages/login/login';
+//import { LoginPage } from '../pages/login/login';
 import { AuthenticationService } from '../services/authentication.service';
 import { TabsPage } from '../pages/tabs/tabs';
-import { NavController, LoadingController, NavParams } from 'ionic-angular';
+//import { NavController, LoadingController, NavParams } from 'ionic-angular';
 
-import { App, MenuController } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 
 @Component({
   templateUrl: 'app.html'

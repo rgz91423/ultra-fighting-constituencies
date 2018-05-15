@@ -1,10 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavParams, NavController, LoadingController, AlertController, ModalController, Slides, ViewController } from 'ionic-angular';
+import { NavParams, NavController, LoadingController, AlertController, Slides, ViewController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { WordpressService } from '../../services/wordpress.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/forkJoin';
 
@@ -37,8 +36,7 @@ export class GalleryItemPage {
     public authenticationService: AuthenticationService
   ) {
     this.morePagesAvailable = true;
-    let loading = this.loadingCtrl.create();
-
+    
     //loading.present();
 
     //this.post = this.navParams.get('item');
@@ -46,10 +44,12 @@ export class GalleryItemPage {
     this.posts  = this.navParams.get('posts');
     this.categoryId = this.navParams.get('category');
     this.index = +this.navParams.get('index');
+
+   
   }
 
   ionViewWillEnter(){
-   
+    if (this.slides.isBeginning()) this.getDetail();
    /*
       if(!(this.post)){
         loading.present();
@@ -84,13 +84,12 @@ export class GalleryItemPage {
 
  
   getDetail(){
-
+    
 
     let theIndex = this.slides.getActiveIndex() || this.index;
     let post = this.posts[theIndex];
-    console.log(theIndex+" " + post);
+    this.index = theIndex;
    
-
     let loading = this.loadingCtrl.create();
     if(!post || !post.detailed){
       loading.present();
